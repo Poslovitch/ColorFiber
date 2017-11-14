@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="250.0" prefWidth="200.0" xmlns="http://javafx.com/javafx/9" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fr.poslovitch.colorfiber.stages.LoadingController">
+   <children>
+      <Label fx:id="announcer" layoutX="52.0" layoutY="219.0" text="TELL THEM TWICE" />
+   </children>
+</AnchorPane>

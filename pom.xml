@@ -49,8 +49,18 @@
             </plugin>
         </plugins>
         <defaultGoal>clean package install</defaultGoal>
-        <finalName>ColorFiber-${version}</finalName>
+        <finalName>ColorFiber-${project.version}</finalName>
         <sourceDirectory>${basedir}/src/</sourceDirectory>
+        <resources>
+            <resource>
+                <targetPath>stages</targetPath>
+                <filtering>true</filtering>
+                <directory>${basedir}/res/stages/</directory>
+                <includes>
+                    <include>*.fxml</include>
+                </includes>
+            </resource>
+        </resources>
     </build>
 
 </project>
