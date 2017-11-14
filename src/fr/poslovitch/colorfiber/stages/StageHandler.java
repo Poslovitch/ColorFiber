@@ -6,8 +6,11 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
+import java.util.Map;
+
 public class StageHandler {
 
+    public static Map<String, FXMLLoader> loaders;
     private static Stage currentStage;
 
     public static void closeCurrentStage() {
@@ -34,8 +37,7 @@ public class StageHandler {
 
     public static void openMainStage() {
         try {
-            FXMLLoader loader = new FXMLLoader(ColorFiber.class.getResource("/stages/main.fxml"));
-            Parent root = loader.load();
+            Parent root = loaders.get("main").load();
 
             currentStage = new Stage();
             currentStage.setTitle("ColorFiber");
