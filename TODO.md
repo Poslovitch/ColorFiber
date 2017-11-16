@@ -1,4 +1,4 @@
-1. General
+### 1. General
 
 - [ ] 1.1 Choose between send and receive {Conflict 3.1} 
 - [ ] 1.2 Add a timer 
