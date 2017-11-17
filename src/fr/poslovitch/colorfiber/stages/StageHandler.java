@@ -1,6 +1,7 @@
 package fr.poslovitch.colorfiber.stages;
 
 import fr.poslovitch.colorfiber.ColorFiber;
+import fr.poslovitch.colorfiber.config.Settings;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -31,7 +32,6 @@ public class StageHandler {
         } catch (Exception e) {
             e.printStackTrace();
             //TODO error report
-            System.exit(0);
         }
     }
 
@@ -43,10 +43,11 @@ public class StageHandler {
             currentStage.setTitle("ColorFiber");
             currentStage.setScene(new Scene(root));
             currentStage.show();
+
+            currentStage.setOnCloseRequest((event) -> Settings.save());
         } catch (Exception e) {
             e.printStackTrace();
             //TODO error report
-            System.exit(0);
         }
     }
 }

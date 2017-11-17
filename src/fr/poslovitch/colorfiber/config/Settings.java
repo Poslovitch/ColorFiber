@@ -34,7 +34,7 @@ public class Settings {
             inPinRed = Integer.valueOf(prop.getProperty("in-pin-red"));
             inPinGreen = Integer.valueOf(prop.getProperty("in-pin-green"));
             inPinBlue = Integer.valueOf(prop.getProperty("in-pin-blue"));
-            
+
         } catch (IOException ex) {
             ex.printStackTrace();
         } finally{
