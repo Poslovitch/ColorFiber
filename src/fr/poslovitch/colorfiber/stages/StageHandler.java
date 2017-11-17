@@ -12,7 +12,7 @@ import java.util.Map;
 public class StageHandler {
 
     public static Map<String, FXMLLoader> loaders;
-    private static Stage currentStage;
+    private static Stage currentStage; //TODO Due to the error stage, this needs to be reworked
 
     public static void closeCurrentStage() {
         currentStage.close();
@@ -30,8 +30,7 @@ public class StageHandler {
             currentStage.show();
             controller.launch();
         } catch (Exception e) {
-            e.printStackTrace();
-            //TODO error report
+            StageHandler.showErrorDialog(e);
         }
     }
 
@@ -46,8 +45,25 @@ public class StageHandler {
 
             currentStage.setOnCloseRequest((event) -> Settings.save());
         } catch (Exception e) {
-            e.printStackTrace();
-            //TODO error report
+            StageHandler.showErrorDialog(e);
+        }
+    }
+
+    public static void showErrorDialog(Exception e) {
+        try {
+            Parent root = loaders.get("error").load();
+            ErrorController controller = loaders.get("error").getController();
+
+            currentStage = new Stage();
+            currentStage.setTitle("ERROR");
+            currentStage.setScene(new Scene(root));
+            currentStage.show();
+
+            currentStage.setOnCloseRequest((event) -> System.exit(0));
+
+            controller.displayStackTrace(e);
+        } catch (Exception ex) {
+            System.exit(0);
         }
     }
 }
