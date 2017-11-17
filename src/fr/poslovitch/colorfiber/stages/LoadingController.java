@@ -1,6 +1,7 @@
 package fr.poslovitch.colorfiber.stages;
 
 import fr.poslovitch.colorfiber.ColorFiber;
+import fr.poslovitch.colorfiber.config.Settings;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -45,7 +46,6 @@ public class LoadingController implements Initializable {
                 if (path.endsWith(".fxml") && fileName.matches("\\w+")) {
                     StageHandler.loaders.put(fileName, new FXMLLoader(ColorFiber.class.getResource("/" + path)));
                     announcer.setText("FXML files: /" + path);
-                    System.out.println(fileName + " : /" + path);
                 }
             }
 
@@ -55,6 +55,10 @@ public class LoadingController implements Initializable {
         }
 
         announcer.setText("Connecting to Arduino...");
+        //TODO connect to arduino
+
+        announcer.setText("Loading config.properties");
+        Settings.load();
 
         finish();
     }

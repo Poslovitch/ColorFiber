@@ -60,6 +60,14 @@
                     <include>*.fxml</include>
                 </includes>
             </resource>
+            <resource>
+                <targetPath>.</targetPath>
+                <filtering>true</filtering>
+                <directory>${basedir}/res/config</directory>
+                <includes>
+                    <include>*.properties</include>
+                </includes>
+            </resource>
         </resources>
     </build>
 
