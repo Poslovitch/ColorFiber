@@ -21,9 +21,7 @@ public class LoadingController implements Initializable {
     private Label announcer;
 
     @Override
-    public void initialize(URL location, ResourceBundle resources) {
-
-    }
+    public void initialize(URL location, ResourceBundle resources) {}
 
     public void launch() {
         announcer.setText("Loading FXML files...");
