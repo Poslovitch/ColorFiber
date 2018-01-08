@@ -49,6 +49,12 @@ void loop() {
         analogWrite(redPin, red);
         analogWrite(greenPin, green);
         analogWrite(bluePin, blue);
+        Serial.print("Received: r=");
+        Serial.print(red);
+        Serial.print(" g=");
+        Serial.print(green);
+        Serial.print(" b=");
+        Serial.println(blue);
       }
     }
   }
