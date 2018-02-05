@@ -16,9 +16,9 @@ enum mode {
 const mode mode = output;
 
 // Constants of the pins
-const int redPin = 3;
+const int redPin = 6;
 const int greenPin = 5;
-const int bluePin = 6;
+const int bluePin = 3;
 
 void setup() {
   if(mode == output) {
@@ -31,7 +31,7 @@ void setup() {
     Serial.begin(57600);
   }
   else if(mode == input) {
-    
+    pinMode(A0, INPUT);
   }
 }
 
@@ -45,10 +45,17 @@ void loop() {
 
       // Look for newline. = end of order
       if (Serial.read() == '\n') {
+        // Look for values askng for a debug
+        if (red == -42) {
+          testOutput();
+          return;
+        }
         // Write the values to the corresponding pins
         analogWrite(redPin, red);
         analogWrite(greenPin, green);
         analogWrite(bluePin, blue);
+
+        // On print un débug des données reçues et renvoyées aux pins.
         Serial.print("Received: r=");
         Serial.print(red);
         Serial.print(" g=");
@@ -59,6 +66,31 @@ void loop() {
     }
   }
   else if(mode == input) {
+    
+  }
+}
+
+void testOutput() {
+  Serial.println("Testing output");
+  for(int i = 0; i < 50; i++) {
+    int red = random(0, 255);
+    int green = random(0, 255);
+    int blue = random(0, 255);
+    analogWrite(redPin, red);
+    analogWrite(greenPin, green);
+    analogWrite(bluePin, blue);
+    // On print un débug des données reçues et renvoyées aux pins.
+    Serial.print("DEBUG: r=");
+    Serial.print(red);
+    Serial.print(" g=");
+    Serial.print(green);
+    Serial.print(" b=");
+    Serial.println(blue);
+    delay(10);
+    analogWrite(redPin, 0);
+    analogWrite(greenPin, 0);
+    analogWrite(bluePin, 0);
+    delay(40);
   }
 }
 
