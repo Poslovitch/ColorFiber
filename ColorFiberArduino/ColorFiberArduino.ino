@@ -1,8 +1,4 @@
-/*
- * This code has been redacted by Poslovitch, known as CUNY Florian,
- * who lives in the best country in the world, but who would care of that?
- * 
- * This code is heavily inspired and based on the example code "ReadASCIIString", created 13 Apr 2012 by Tom Igoe.
+/* This code is heavily inspired and based on the example code "ReadASCIIString", created 13 Apr 2012 by Tom Igoe.
  * 
  * Created 04 Dec 2017
  * by Florian CUNY
