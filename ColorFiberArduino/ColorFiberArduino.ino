@@ -15,10 +15,10 @@ enum mode {
 };
 const mode mode = output;
 
-// Constants of the pins
+// Constants of the pins for the output mode
 const int redPin = 6;
-const int greenPin = 5;
-const int bluePin = 3;
+const int greenPin = 3;
+const int bluePin = 5;
 
 void setup() {
   if(mode == output) {
@@ -32,6 +32,8 @@ void setup() {
   }
   else if(mode == input) {
     pinMode(A0, INPUT);
+    pinMode(A2, INPUT);
+    pinMode(A5, INPUT);
   }
 }
 
@@ -66,13 +68,24 @@ void loop() {
     }
   }
   else if(mode == input) {
-    
+    // On récupère les valeurs aux pins connectés au capteur
+    int red = analogRead(A0);
+    int green = analogRead(A2);
+    int blue = analogRead(A5);
+
+    // On envoie les données en Serial
+    Serial.print("Received: r=");
+    Serial.print(red);
+    Serial.print(" g=");
+    Serial.print(green);
+    Serial.print(" b=");
+    Serial.println(blue);
   }
 }
 
 void testOutput() {
   Serial.println("Testing output");
-  for(int i = 0; i < 50; i++) {
+  for(int i = 0; i < 250; i++) {
     int red = random(0, 255);
     int green = random(0, 255);
     int blue = random(0, 255);
@@ -90,7 +103,19 @@ void testOutput() {
     analogWrite(redPin, 0);
     analogWrite(greenPin, 0);
     analogWrite(bluePin, 0);
-    delay(40);
+    delay(10);
+  }
+
+  for(int c = 0 ; c < 3 ; c++){
+    int slot;
+    for(int i = -255 ; i < 256 ; i++) {
+      if(c == 0) slot = redPin;
+      if(c == 1) slot = greenPin;
+      if(c == 2) slot = bluePin;
+      analogWrite(slot, abs(i));
+      delay(10);
+    }
+    analogWrite(slot, 0);
   }
 }
 
